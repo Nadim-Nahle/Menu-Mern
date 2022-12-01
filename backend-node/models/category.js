@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
+const options = {
+    separator: '-',
+    lang: 'en',
+    truncate: 120
+};
+
+Mongoose.plugin(slug, options);
+
 //category SCHEMA
 const CategorySchema = new Schema({
     _id: {
