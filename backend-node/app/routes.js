@@ -1,6 +1,6 @@
 const express = require("express");
 const { addCategory, getCategories } = require('../controllers/CategoryController');
-const { addProduct, getProducts, updateProduct } = require('../controllers/ProductController');
+const { addProduct, getProducts, updateProduct, deleteProduct } = require('../controllers/ProductController');
 const router = express.Router();
 const multer = require('multer');
 const shortid = require("shortid");
@@ -22,7 +22,7 @@ const upload = multer({ storage: storage })
 // //PRODUCT ROUTES
 router.post("/add/product", upload.array('picture'), addProduct);
 router.get("/products", getProducts);
-//router.delete("/delete/:id", auth, deleteProducts);
+router.delete("/delete/product/:id", deleteProduct);
 router.patch("/update/product/:id", updateProduct);
 
 // CATEGORY ROUTES

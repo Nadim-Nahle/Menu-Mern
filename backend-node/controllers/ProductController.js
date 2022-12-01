@@ -56,8 +56,25 @@ async function updateProduct(req, res) {
         res.status(400).send(error.message);
     }
 }
+
+//DELETE PRODUCT CONTROLLER
+async function deleteProduct(req, res) {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).send();
+        }
+        await product.remove();
+        res.status(200).send({ data: true });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+
 module.exports = {
     addProduct,
     getProducts,
-    updateProduct
+    updateProduct,
+    deleteProduct
 };
