@@ -13,6 +13,20 @@ async function addProduct(req, res) {
     }
 }
 
+//GET PRODUCT CONTROLLER
+async function getProduct(req, res) {
+    try {
+        const product = await Product.find({ all });
+        if (!product) {
+            return res.status(404).send();
+        }
+        res.status(200).send(product);
+    } catch (error) {
+        res.status(400).send(error.message);
+
+    }
+}
 module.exports = {
     addProduct,
+    getProduct
 };
