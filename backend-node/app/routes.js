@@ -5,9 +5,9 @@ const router = express.Router();
 // ROUTES
 
 // //PRODUCT ROUTES
-// router.post("/addproduct", auth, addProduct);
-// router.get("/products", auth, getProduct);
-// router.delete("/delete/:id", auth, deleteProducts);
+router.post("/add/product", addProduct);
+router.get("/products", getProduct);
+//router.delete("/delete/:id", auth, deleteProducts);
 // router.patch("/product/update/:id", auth, updateProduct);
 
 // CATEGORY ROUTES
