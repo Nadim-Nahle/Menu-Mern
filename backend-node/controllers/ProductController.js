@@ -41,7 +41,23 @@ async function getProducts(req, res) {
 
     }
 }
+
+//UPDATE PRODUCT CONTROLLER
+async function updateProduct(req, res) {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).send();
+        }
+        Object.assign(product, req.body);
+        product.save();
+        res.send({ data: product });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 module.exports = {
     addProduct,
-    getProducts
+    getProducts,
+    updateProduct
 };
