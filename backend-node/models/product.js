@@ -25,11 +25,12 @@ const ProductSchema = new mongoose.Schema({
     },
     picture: [
         {
-            img: { type: string }
+            img: { type: String }
         }
     ],
     category: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Category'
+        type: mongoose.Schema.Types.ObjectId, ref: 'Category',
+        required: true
     },
     created: {
         type: Date,

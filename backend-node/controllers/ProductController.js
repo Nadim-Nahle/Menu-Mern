@@ -1,12 +1,27 @@
 const { all } = require("../app/routes");
 const Product = require("../models/product");
 const fs = require('fs');
+const slugify = require('slugify');
 
 //ADD Product CONTROLLER
 async function addProduct(req, res) {
-    const product = new Product({ ...req.body });
+    const { name, description, price, category } = req.body;
+    let picture = [];
+    if (req.files.length > 0) {
+        picture = req.files.map(file => {
+            return { img: file.filename }
+        })
+    }
+    const product = new Product({
+        name: name,
+        slug: slugify(name),
+        price,
+        description,
+        picture,
+        category
+    })
     try {
-        await movie.save();
+        await product.save();
         res.status(201).send(product);
     } catch (error) {
         res.status(500).send(error.message);
@@ -14,7 +29,7 @@ async function addProduct(req, res) {
 }
 
 //GET PRODUCT CONTROLLER
-async function getProduct(req, res) {
+async function getProducts(req, res) {
     try {
         const product = await Product.find({ all });
         if (!product) {
@@ -28,5 +43,5 @@ async function getProduct(req, res) {
 }
 module.exports = {
     addProduct,
-    getProduct
+    getProducts
 };
