@@ -1,40 +1,36 @@
 const mongoose = require('mongoose');
-const slug = require('mongoose-slug-generator');
-const { Schema } = mongoose;
-
-const options = {
-    separator: '-',
-    lang: 'en',
-    truncate: 120
-};
-
-mongoose.plugin(slug, options);
 
 // Product Schema
-const ProductSchema = new Schema({
+const ProductSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: true,
         trim: true
     },
     slug: {
         type: String,
-        slug: 'name',
         unique: true
-    },
-    imageUrl: {
-        type: String
-    },
-    imageKey: {
-        type: String
     },
     description: {
         type: String,
-        trim: true
+        trim: true,
+        required: true
     },
     price: {
+        type: Number,
+        required: true
+    },
+    offer: {
         type: Number
     },
-    updated: Date,
+    picture: [
+        {
+            img: { type: string }
+        }
+    ],
+    category: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Category'
+    },
     created: {
         type: Date,
         default: Date.now
