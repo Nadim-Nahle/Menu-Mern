@@ -1,5 +1,5 @@
 const express = require("express");
-const { addCategory } = require('../controllers/CategoryController')
+const { addCategory, getCategories } = require('../controllers/CategoryController')
 const router = express.Router();
 
 // ROUTES
@@ -12,6 +12,7 @@ const router = express.Router();
 
 // CATEGORY ROUTES
 router.post("/add/category", addCategory);
+router.get("/categories", getCategories);
 
 
 

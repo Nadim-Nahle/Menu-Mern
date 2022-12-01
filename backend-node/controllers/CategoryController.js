@@ -1,6 +1,8 @@
 const Category = require("../models/category");
 const fs = require('fs');
 const slugify = require('slugify');
+const { all } = require('../app/routes')
+const { createCategories } = require('../services/CategoryService')
 
 //ADD CATEGORY CONTROLLER
 async function addCategory(req, res) {
@@ -20,6 +22,22 @@ async function addCategory(req, res) {
     }
 }
 
+//GET CATEGORIES CONTROLLER
+async function getCategories(req, res) {
+    try {
+        const category = await Category.find(all)
+        if (!category) {
+            return res.status(405).send()
+        }
+        const categoryList = createCategories(category)
+        res.status(200).json({ categoryList })
+    }
+    catch (error) {
+        res.status(400).send(error.message);
+    }
+
+}
+
 module.exports = {
-    addCategory,
+    addCategory, getCategories
 };
