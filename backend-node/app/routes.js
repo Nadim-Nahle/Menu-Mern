@@ -1,5 +1,5 @@
 const express = require("express");
-const { addCategory, getCategories } = require('../controllers/CategoryController');
+const { addCategory, getCategories, deleteCategory } = require('../controllers/CategoryController');
 const { addProduct, getProducts, updateProduct, deleteProduct } = require('../controllers/ProductController');
 const router = express.Router();
 const multer = require('multer');
@@ -28,6 +28,7 @@ router.patch("/update/product/:id", updateProduct);
 // CATEGORY ROUTES
 router.post("/add/category", addCategory);
 router.get("/categories", getCategories);
+router.delete("/delete/category/:id", deleteCategory);
 // router.patch("/update/category/:id", updateCategory);
 
 

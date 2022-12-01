@@ -38,6 +38,20 @@ async function getCategories(req, res) {
 
 }
 
+//DELETE CATEGORY CONTROLLER
+async function deleteCategory(req, res) {
+    try {
+        const category = await Category.findById(req.params.id);
+        if (!category) {
+            return res.status(404).send();
+        }
+        await category.remove();
+        res.status(200).send({ data: true });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 module.exports = {
-    addCategory, getCategories
+    addCategory, getCategories, deleteCategory
 };
