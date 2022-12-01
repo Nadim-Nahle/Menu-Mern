@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 //category SCHEMA
-const CategorySchema = new Schema({
+const CategorySchema = new mongoose.Schema({
 
     name: {
         type: String,
