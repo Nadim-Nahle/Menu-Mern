@@ -1,0 +1,13 @@
+.header {
+  height: 60px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-container {
+  height: 55px;
+}
+.logo {
+  height: 100%;
+}
