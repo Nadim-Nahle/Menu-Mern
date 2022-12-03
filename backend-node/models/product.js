@@ -23,11 +23,9 @@ const ProductSchema = new mongoose.Schema({
     offer: {
         type: Number
     },
-    picture: [
-        {
-            img: { type: String }
-        }
-    ],
+    img: {
+        type: String
+    },
     category: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Category'
     },
@@ -35,6 +33,7 @@ const ProductSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

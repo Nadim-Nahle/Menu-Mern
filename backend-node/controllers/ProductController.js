@@ -49,7 +49,7 @@ async function updateProduct(req, res) {
         if (!product) {
             return res.status(404).send();
         }
-        Object.assign(product, req.body);
+        Object.assign(product, req.body)
         product.save();
         res.send({ data: product });
     } catch (error) {

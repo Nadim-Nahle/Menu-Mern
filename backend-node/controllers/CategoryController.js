@@ -36,7 +36,7 @@ async function getCategories(req, res) {
         for (i = 0; i < category.length; i++) {
             for (j = 0; j < product.length; j++) {
                 if (category[i]._id.toString() == product[j].category.toString()) {
-                    category[i].product = product[j]
+                    category[i].products.push(product[j])
                 }
             }
 

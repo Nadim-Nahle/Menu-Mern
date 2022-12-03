@@ -19,9 +19,12 @@ const CategorySchema = new mongoose.Schema({
     parentId: {
         type: String,
     },
-    product: {
-
+    img: {
+        type: String
     },
+    products: [],
+
+
     created: {
         type: Date,
         default: Date.now

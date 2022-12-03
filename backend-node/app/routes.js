@@ -23,7 +23,7 @@ const upload = multer({ storage: storage })
 router.post("/add/product", upload.array('picture'), addProduct);
 router.get("/products", getProducts);
 router.delete("/delete/product/:id", deleteProduct);
-router.patch("/update/product/:id", updateProduct);
+router.get("/product/update/:id", updateProduct);
 
 // CATEGORY ROUTES
 router.post("/add/category", addCategory);
