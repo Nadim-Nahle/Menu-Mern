@@ -20,10 +20,10 @@ const CategorySchema = new mongoose.Schema({
         type: String,
     },
     img: {
-        type: String
+        type: String,
+        required: true
     },
     products: [],
-
 
     created: {
         type: Date,
