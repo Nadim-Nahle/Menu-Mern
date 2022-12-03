@@ -54,7 +54,20 @@ code {
   flex-wrap: wrap;
 }
 .pic-container {
-  height: 150px;
+  height: 175px;
   width: 200px;
   background-color: red;
+}
+.pic {
+  height: 100%;
+  width: 100%;
+}
+.title-container {
+  height: 25px;
+  display: flex;
+  justify-content: center;
+}
+.title {
+  font-size: 17px;
+  font-weight: bold;
 }
