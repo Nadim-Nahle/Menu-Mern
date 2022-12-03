@@ -19,7 +19,9 @@ const CategorySchema = new mongoose.Schema({
     parentId: {
         type: String,
     },
+    product: {
 
+    },
     created: {
         type: Date,
         default: Date.now

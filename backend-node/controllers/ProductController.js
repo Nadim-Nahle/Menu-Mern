@@ -7,11 +7,11 @@ const slugify = require('slugify');
 async function addProduct(req, res) {
     const { name, description, price, category } = req.body;
     let picture = [];
-    if (req.files.length > 0) {
-        picture = req.files.map(file => {
-            return { img: file.filename }
-        })
-    }
+    // if (req.files.length > 0) {
+    //     picture = req.files.map(file => {
+    //         return { img: file.filename }
+    //     })
+    // }
     const product = new Product({
         name: name,
         slug: slugify(name),

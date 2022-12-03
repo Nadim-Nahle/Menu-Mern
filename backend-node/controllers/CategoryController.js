@@ -2,7 +2,8 @@ const Category = require("../models/category");
 const fs = require('fs');
 const slugify = require('slugify');
 const { all } = require('../app/routes')
-const { createCategories } = require('../services/CategoryService')
+const { createCategories } = require('../services/CategoryService');
+const Product = require("../models/product");
 
 //ADD CATEGORY CONTROLLER
 async function addCategory(req, res) {
@@ -29,8 +30,18 @@ async function getCategories(req, res) {
         if (!category) {
             return res.status(405).send()
         }
-        const categoryList = createCategories(category)
-        res.status(200).json({ categoryList })
+        // const categoryList = createCategories(category)
+        const product = await Product.find(all)
+        let p = []
+        for (i = 0; i < category.length; i++) {
+            for (j = 0; j < product.length; j++) {
+                if (category[i]._id.toString() == product[j].category.toString()) {
+                    category[i].product = product[j]
+                }
+            }
+
+        }
+        res.status(200).send(category)
     }
     catch (error) {
         res.status(400).send(error.message);
