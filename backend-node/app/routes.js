@@ -11,10 +11,17 @@ const admin = require('../middlewares/AdminMiddleware')
 // ROUTES
 
 // //PRODUCT ROUTES
-router.post("/add/product", auth, admin, addProduct);
+// Protected****
+// router.post("/add/product", auth, admin, addProduct);
+// router.get("/products", getProducts);
+// router.delete("/delete/product/:id", auth, admin, deleteProduct);
+// router.patch("/product/update/:id", auth, admin, updateProduct);
+
+//Public
+router.post("/add/product", addProduct);
 router.get("/products", getProducts);
-router.delete("/delete/product/:id", auth, admin, deleteProduct);
-router.patch("/product/update/:id", auth, admin, updateProduct);
+router.delete("/delete/product/:id", deleteProduct);
+router.patch("/product/update/:id", updateProduct);
 
 
 // CATEGORY ROUTES
