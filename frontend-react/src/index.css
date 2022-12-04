@@ -44,7 +44,7 @@ code {
   flex-direction: column;
 }
 .item {
-  height: 200px;
+  height: 225px;
   width: 200px;
   background-color: blueviolet;
   margin: 10px;
@@ -70,4 +70,8 @@ code {
 .title {
   font-size: 17px;
   font-weight: bold;
+}
+
+.menu-scroll {
+  cursor: pointer;
 }
