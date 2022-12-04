@@ -32,7 +32,6 @@ async function getCategories(req, res) {
         }
         // const categoryList = createCategories(category)
         const product = await Product.find(all)
-        let p = []
         for (i = 0; i < category.length; i++) {
             for (j = 0; j < product.length; j++) {
                 if (category[i]._id.toString() == product[j].category.toString()) {

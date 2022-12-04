@@ -2,25 +2,29 @@ const { all } = require("../app/routes");
 const Product = require("../models/product");
 const fs = require('fs');
 const slugify = require('slugify');
+const Category = require("../models/category");
 
 //ADD Product CONTROLLER
 async function addProduct(req, res) {
-    const { name, description, price, category } = req.body;
-    let picture = [];
-    // if (req.files.length > 0) {
-    //     picture = req.files.map(file => {
-    //         return { img: file.filename }
-    //     })
-    // }
-    const product = new Product({
-        name: name,
-        slug: slugify(name),
-        price,
-        description,
-        picture,
-        category
-    })
+
     try {
+
+        const { name, description, price, category, img } = req.body;
+        let picture = [];
+        // if (req.files.length > 0) {
+        //     picture = req.files.map(file => {
+        //         return { img: file.filename }
+        //     })
+        // }
+        const product = new Product({
+            name: name,
+            slug: slugify(name),
+            price,
+            description,
+            picture,
+            category,
+            img
+        })
         await product.save();
         res.status(201).send(product);
     } catch (error) {
@@ -32,8 +36,17 @@ async function addProduct(req, res) {
 async function getProducts(req, res) {
     try {
         const product = await Product.find({ all });
+        const category = await Category.find({ all });
         if (!product) {
             return res.status(404).send();
+        }
+        for (i = 0; i < category.length; i++) {
+            for (j = 0; j < product.length; j++) {
+                if (category[i]._id.toString() == product[j].category.toString()) {
+                    product[j].categoryName = category[i].name
+                }
+            }
+
         }
         res.status(200).send(product);
     } catch (error) {
