@@ -12,7 +12,7 @@ const Admin = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState();
 
   const getProducts = async () => {
     const { data } = await axios.get("/products");
@@ -31,6 +31,7 @@ const Admin = () => {
         name: name ? name : p?.name,
         price: price ? price : p?.price,
         description: description ? description : p?.description,
+        category: category ? category : p?.category,
       });
       console.log(data);
       setData(data);
@@ -102,7 +103,7 @@ const Admin = () => {
                   <div className="center">{p?.categoryName}</div>
                   {update ? (
                     <div className="center">
-                      <select name="" id="">
+                      <select onChange={(e) => setCategory(e.target.value)}>
                         {categories?.map((c) => (
                           <option key={c?._id} value={c?._id}>
                             {c?.name}
