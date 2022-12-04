@@ -87,10 +87,12 @@ code {
 .admin {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .table-container {
   width: 100%;
+  margin-bottom: 30px;
 }
 table {
   border-collapse: collapse;
@@ -172,4 +174,67 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+/* Modal */
+
+.modalBackground {
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.modalContainer {
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  height: 400px;
+  width: 520px;
+  justify-content: center;
+  align-items: center;
+}
+.close {
+  color: black;
+  opacity: 0.9;
+}
+.label {
+  margin: 10px;
+  font-weight: 500;
+  width: 50px;
+}
+.input {
+  width: 400px;
+  margin: 10px;
+}
+.option {
+  width: 400px;
+  height: 30px;
+  margin: 10px;
+}
+.x {
+  position: absolute;
+  top: 13%;
+  right: 31%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.add {
+  background-color: rgb(15, 209, 15);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }

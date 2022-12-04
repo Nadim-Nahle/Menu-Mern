@@ -2,12 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "../api/axios";
+import Modal from "../components/Modal";
 
 const Admin = () => {
   const [update, setUpdate] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [data, setData] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -52,6 +55,13 @@ const Admin = () => {
 
   return (
     <div className="admin">
+      <div className="add" onClick={() => setOpenModal(true)}>
+        Add A Product
+      </div>
+      {openModal ? (
+        <Modal close={setOpenModal} categories={categories} setData={setData} />
+      ) : null}
+
       <div className="table-container">
         <table>
           <thead>
@@ -109,6 +119,8 @@ const Admin = () => {
                   {update ? (
                     <div className="center">
                       <select onChange={(e) => setCategory(e.target.value)}>
+                        <option value="">Select A Category</option>
+
                         {categories?.map((c) => (
                           <option key={c?._id} value={c?._id}>
                             {c?.name}
