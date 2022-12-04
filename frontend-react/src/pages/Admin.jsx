@@ -7,6 +7,12 @@ const Admin = () => {
   const [update, setUpdate] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [data, setData] = useState([]);
+
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
 
   const getProducts = async () => {
     const { data } = await axios.get("/products");
@@ -19,10 +25,24 @@ const Admin = () => {
     setCategories(data);
   };
 
+  const updateProducts = async (p) => {
+    try {
+      const { data } = await axios.patch(`/product/update/${p?._id}`, {
+        name: name ? name : p?.name,
+        price: price ? price : p?.price,
+        description: description ? description : p?.description,
+      });
+      console.log(data);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getProducts();
     getCategories();
-  }, []);
+  }, [data]);
 
   return (
     <div className="admin">
@@ -54,13 +74,16 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((p) => (
-              <tr>
+            {products?.map((p) => (
+              <tr key={p?._id}>
                 <td>
                   <div className="center">{p?.name}</div>
                   {update ? (
                     <div className="center">
-                      <input type="text" />
+                      <input
+                        type="text"
+                        onChange={(e) => setName(e.currentTarget.value)}
+                      />
                     </div>
                   ) : null}
                 </td>
@@ -68,7 +91,10 @@ const Admin = () => {
                   <div className="center">{p?.price}</div>
                   {update ? (
                     <div className="center">
-                      <input type="text" />
+                      <input
+                        type="number"
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
                     </div>
                   ) : null}
                 </td>
@@ -77,8 +103,8 @@ const Admin = () => {
                   {update ? (
                     <div className="center">
                       <select name="" id="">
-                        {categories.map((c) => (
-                          <option key={c?._id} value={c?.slug}>
+                        {categories?.map((c) => (
+                          <option key={c?._id} value={c?._id}>
                             {c?.name}
                           </option>
                         ))}
@@ -93,7 +119,10 @@ const Admin = () => {
                   </div>
                   {update ? (
                     <div className="center">
-                      <textarea type="text" />
+                      <textarea
+                        type="text"
+                        onChange={(e) => setDescription(e.currentTarget.value)}
+                      />
                     </div>
                   ) : null}
                 </td>
@@ -116,7 +145,12 @@ const Admin = () => {
                 </td>
                 <td>
                   <div className="center">
-                    <button className="delete-btn">Save</button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => updateProducts(p)}
+                    >
+                      Save
+                    </button>
                   </div>
                 </td>
               </tr>
