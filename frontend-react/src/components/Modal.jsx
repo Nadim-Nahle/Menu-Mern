@@ -6,6 +6,7 @@ const Modal = ({ close, categories, setData }) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState();
+  const [img, setImg] = useState("");
 
   const addProduct = async () => {
     try {
@@ -14,14 +15,36 @@ const Modal = ({ close, categories, setData }) => {
         price,
         description,
         category,
+        img,
       });
       console.log(data);
+      console.log(img);
       setData(data);
       close(false);
     } catch (error) {
+      console.log(img);
       console.log(error);
     }
   };
+
+  const uploadimg = (e) => {
+    const files = e.target.files;
+    const file = files[0];
+    getBased64(file);
+  };
+
+  const onLoad = (fileString) => {
+    setImg(fileString);
+  };
+
+  const getBased64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
+
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -61,7 +84,13 @@ const Modal = ({ close, categories, setData }) => {
                 Picture
               </label>
             </div>
-            <input className="input" type="file" name="" id="" />
+            <input
+              className="input"
+              type="file"
+              name=""
+              id=""
+              onChange={uploadimg}
+            />
           </div>
           <div className="name">
             <div className="label-container">

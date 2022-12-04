@@ -29,45 +29,47 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="menu-items-container">
-        <div className="menu-items">
-          <div className="items">
-            {categories?.map((c) => (
-              <div
-                className="menu-scroll"
-                key={c?._id}
-                onClick={() => scrollTo(`${c?.slug}`)}
-              >
-                {c?.name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="categories">
-        {categories?.map((c) => (
-          <div className="category" key={c?._id} id={c?.slug}>
-            <div className="category-name">{c?.name}</div>
+      <>
+        <div className="menu-items-container">
+          <div className="menu-items">
             <div className="items">
-              {c?.products?.map((p) => (
-                <div className="item" key={p?._id}>
-                  <div className="pic-container">
-                    <img className="pic" src={p.img} alt="" />
-                  </div>
-                  <div className="title-container">
-                    <div className="title">{p?.name}</div>
-                    <div className="price-container">
-                      <div>Price: </div>
-                      <div className="price">{`${p?.price}`} </div>
-                      <div>$ </div>
-                    </div>
-                  </div>
+              {categories?.map((c) => (
+                <div
+                  className="menu-scroll title"
+                  key={c?._id}
+                  onClick={() => scrollTo(`${c?.slug}`)}
+                >
+                  {c?.name}
                 </div>
               ))}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+        <div className="categories">
+          {categories?.map((c) => (
+            <div className="category" key={c?._id} id={c?.slug}>
+              <div className="category-name title">{c?.name}</div>
+              <div className="items">
+                {c?.products?.map((p) => (
+                  <div className="item" key={p?._id}>
+                    <div className="pic-container">
+                      <img className="pic" src={p.img} alt="" />
+                    </div>
+                    <div className="title-container">
+                      <div className="title">{p?.name}</div>
+                      <div className="price-container">
+                        <div>Price: </div>
+                        <div className="price">{`${p?.price}`} </div>
+                        <div>$ </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
     </div>
   );
 };
