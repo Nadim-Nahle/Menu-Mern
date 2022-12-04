@@ -57,11 +57,11 @@ const Home = () => {
                   </div>
                   <div className="title-container">
                     <div className="title">{p?.name}</div>
-                  </div>
-                  <div className="title-container">
-                    <div className="title">Price:</div>
-                    <div className="title">{` ${p?.price}`}</div>
-                    <div className="title">$</div>
+                    <div className="price-container">
+                      <div>Price: </div>
+                      <div className="price">{`${p?.price}`} </div>
+                      <div>$ </div>
+                    </div>
                   </div>
                 </div>
               ))}
