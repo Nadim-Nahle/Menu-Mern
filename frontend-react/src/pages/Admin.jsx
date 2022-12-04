@@ -21,8 +21,13 @@ const Admin = () => {
   };
   const getCategories = async () => {
     const { data } = await axios.get("/categories");
-    console.log("a", data);
     setCategories(data);
+  };
+
+  const deleteProduct = async (p) => {
+    const { data } = await axios.delete(`/delete/product/${p?._id}`);
+    console.log("a", data);
+    setData(data);
   };
 
   const updateProducts = async (p) => {
@@ -129,7 +134,12 @@ const Admin = () => {
                 </td>
                 <td>
                   <div className="center">
-                    <button className="delete-btn">Delete</button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteProduct(p)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </td>
                 <td>
@@ -147,7 +157,7 @@ const Admin = () => {
                 <td>
                   <div className="center">
                     <button
-                      className="delete-btn"
+                      className="update-btn"
                       onClick={() => updateProducts(p)}
                     >
                       Save

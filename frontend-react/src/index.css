@@ -137,6 +137,19 @@ form td:last-child {
   align-items: center;
   cursor: pointer;
 }
+.update-btn {
+  background-color: blue;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 10%;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .update {
   display: flex;
   justify-content: center;
