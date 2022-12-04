@@ -66,6 +66,10 @@ code {
   height: 25px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  font-size: 2vw;
 }
 .title {
   font-size: 17px;
@@ -74,4 +78,65 @@ code {
 
 .menu-scroll {
   cursor: pointer;
+}
+.admin {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.table-container {
+  width: 100%;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  height: 42px;
+}
+
+th {
+  background-color: rgb(117, 201, 250);
+}
+
+td {
+  background-color: rgb(205, 235, 253);
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.delete-btn {
+  background-color: red;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 10%;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.update {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.center {
+  display: flex;
+  justify-content: center;
 }
