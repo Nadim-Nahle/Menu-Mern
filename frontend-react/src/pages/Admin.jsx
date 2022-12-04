@@ -1,8 +1,28 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import axios from "../api/axios";
 
 const Admin = () => {
   const [update, setUpdate] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const getProducts = async () => {
+    const { data } = await axios.get("/products");
+    console.log("a", data);
+    setProducts(data);
+  };
+  const getCategories = async () => {
+    const { data } = await axios.get("/categories");
+    console.log("a", data);
+    setCategories(data);
+  };
+
+  useEffect(() => {
+    getProducts();
+    getCategories();
+  }, []);
 
   return (
     <div className="admin">
@@ -34,64 +54,73 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div className="center">1</div>
-                {update ? (
-                  <div className="center">
-                    <input type="text" />
+            {products.map((p) => (
+              <tr>
+                <td>
+                  <div className="center">{p?.name}</div>
+                  {update ? (
+                    <div className="center">
+                      <input type="text" />
+                    </div>
+                  ) : null}
+                </td>
+                <td>
+                  <div className="center">{p?.price}</div>
+                  {update ? (
+                    <div className="center">
+                      <input type="text" />
+                    </div>
+                  ) : null}
+                </td>
+                <td>
+                  <div className="center">{p?.categoryName}</div>
+                  {update ? (
+                    <div className="center">
+                      <select name="" id="">
+                        {categories.map((c) => (
+                          <option key={c?._id} value={c?.slug}>
+                            {c?.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : null}
+                </td>
+                <td>
+                  <div className="center desc">
+                    {p?.description.substring(0, 150)}
+                    ...
                   </div>
-                ) : null}
-              </td>
-              <td>
-                <div className="center">1</div>
-                {update ? (
+                  {update ? (
+                    <div className="center">
+                      <textarea type="text" />
+                    </div>
+                  ) : null}
+                </td>
+                <td>
                   <div className="center">
-                    <input type="text" />
+                    <button className="delete-btn">Delete</button>
                   </div>
-                ) : null}
-              </td>
-              <td>
-                <div className="center">1</div>
-                {update ? (
+                </td>
+                <td>
                   <div className="center">
-                    <select name="" id="">
-                      <option value="1">Burger</option>
-                    </select>
+                    <button
+                      className="delete-btn"
+                      onClick={() => {
+                        setUpdate(!update);
+                      }}
+                    >
+                      Update
+                    </button>
                   </div>
-                ) : null}
-              </td>
-              <td>
-                <div className="center">1</div>
-                {update ? (
+                </td>
+                <td>
                   <div className="center">
-                    <input type="text" />
+                    <button className="delete-btn">Save</button>
                   </div>
-                ) : null}
-              </td>
-              <td className="update">
-                <div className="center">
-                  <button className="delete-btn">Delete</button>
-                </div>
-              </td>
-              <td>
-                <div className="center">
-                  <button
-                    className="delete-btn"
-                    onClick={() => {
-                      setUpdate(!update);
-                    }}
-                  >
-                    Update
-                  </button>
-                </div>
-              </td>
-              <td>
-                <div className="center">
-                  <button className="delete-btn">Save</button>
-                </div>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

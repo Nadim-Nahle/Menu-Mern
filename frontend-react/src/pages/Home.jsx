@@ -1,9 +1,8 @@
 import axios from "../api/axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
-  const scrollRef = useRef();
   const [click, setClick] = useState(false);
 
   const getCategories = async () => {

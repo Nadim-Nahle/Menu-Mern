@@ -103,6 +103,7 @@ td {
   text-align: left;
   padding: 8px;
   height: 42px;
+  /* max-width: 100px; */
 }
 
 th {
@@ -144,4 +145,18 @@ form td:last-child {
 .center {
   display: flex;
   justify-content: center;
+}
+input {
+  width: 90%;
+  height: 20px;
+}
+textarea {
+  width: 90%;
+  /* height: 20px; */
+}
+.desc {
+  max-width: 735px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
